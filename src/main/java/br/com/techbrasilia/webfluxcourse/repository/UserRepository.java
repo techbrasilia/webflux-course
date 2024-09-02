@@ -10,9 +10,13 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class UserRepository {
 
-    private final ReactiveMongoTemplate monoTemplate;
+    private final ReactiveMongoTemplate mongoTemplate;
 
     public Mono<User> save(final User user) {
-        return monoTemplate.save(user);
+        return mongoTemplate.save(user);
+    }
+
+    public Mono<User> findById(String id) {
+        return mongoTemplate.findById(id, User.class);
     }
 }
